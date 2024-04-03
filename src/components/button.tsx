@@ -19,12 +19,13 @@ const buttonVariants = cva(
       },
       animation: {
         default: '',
-        loading: ''
+        loading: 'cursor-not-allowed hover:bg-transparent hover:text-violet-600'
       }
     },
     defaultVariants: {
       variant: 'default',
-      size: 'default'
+      size: 'default',
+      animation: 'default'
     }
   }
 )
@@ -35,10 +36,10 @@ interface ButtonProps
 
 const Button: FC<ButtonProps> = ({ children, className, variant, animation, size, ...props }) => {
   return (
-    <button {...props} className={cn(buttonVariants({ variant, size }), className)}>
+    <button {...props} className={cn(buttonVariants({ variant, size, animation }), className)}>
       {animation === 'loading' ? (
         <div className="flex flex-row items-center">
-          <img src="/logo512.png" alt="Loading" width={25} height={25} className="animate-spin"/> {/* Adjust the path to your loading image */}
+          <img src="/loading.webp" alt="Loading" width={25} height={25} className="animate-spin"/> {/* Adjust the path to your loading image */}
           {children}
         </div>
       ) : (
